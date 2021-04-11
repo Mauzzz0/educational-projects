@@ -47,6 +47,7 @@ const todoSchema = new mongoose.Schema({
 const todo = mongoose.model('ToDo', todoSchema)
 
 const todo_test = new todo({title: "title1", description: "desc1"});
-todo_test.save(function (err, todo_test){
-    if (err) return console.error(err);
-});
+//todo_test.save(function (err, todo_test){
+//    if (err) return console.error(err);
+//});
+exports.todo = todo;

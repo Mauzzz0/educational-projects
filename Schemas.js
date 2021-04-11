@@ -4,4 +4,5 @@ const todoSchema = new mongoose.Schema({
     description : String,
     isComplete: {type: Boolean, "default" : false}
 });
+
 const todo = mongoose.model('ToDo', todoSchema)

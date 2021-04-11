@@ -1,7 +1,7 @@
-
 const express = require('express');
 const http = require('http');
 const cors = require('cors');
+const db1 = require('./db');
 
 const app = express();
 app.use(cors());
@@ -62,6 +62,12 @@ app.post('/todoList', (req, res) => {
     });
 })
 
+app.get('/api/todos', (req, res) => {
+    db1.todo.find({}, function(err, users){
+        if (err) return console.log(err);
+        res.send(users)
+    });
+})
 
 http.createServer(app).listen(3000, () => {
     console.log('Server ну типа запущен');
