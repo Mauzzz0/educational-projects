@@ -63,9 +63,17 @@ app.post('/todoList', (req, res) => {
 })
 
 app.get('/api/todos', (req, res) => {
-    db1.todo.find({}, function(err, users){
+    db1.todo.find({}, function(err, todos){
         if (err) return console.log(err);
-        res.send(users)
+        res.send(todos);
+    });
+})
+
+app.get('/api/todos/:id', (req, res) => {
+    const id = req.params.id;
+    db1.todo.findOne({_id:id}, function(err, todo){
+        if (err) return console.log(err);
+        res.send(todo);
     });
 })
 
