@@ -16,6 +16,53 @@ app.all('/', (req, res) => {
     res.status(200).json({message: 'All is ok!' });
 })
 
+app.post('/testPost', (req, res) => {
+    res.status(200).json({ message: 'It is POST'});
+})
+
+app.get('/testGet', (req, res) => {
+    res.status(200).json({ message: 'It is GET'});
+})
+
+app.delete('/testDelete', (req, res) => {
+    res.status(400).json({ message: 'Sorry, this method not work'});
+})
+
+app.put('/testPut', (req, res) => {
+    res.status(500).json({ message: 'Server error'});
+})
+
+app.patch('/testPatch', (req, res) => {
+    res.status(403).json({ message: 'Your token incorrect'});
+})
+
+app.post('/addToDo', (req, res) => {
+    res.status(200).json({ message: 'Add ToDo success'});
+})
+
+app.delete('/deleteToDo', (req, res) => {
+    res.status(200).json({ message: 'Delete ToDo success'});
+})
+
+app.post('/updateToDo', (req, res) => {
+    res.status(200).json({ message: 'Update ToDo success'});
+})
+
+app.post('/todoList', (req, res) => {
+    let arr = [7];
+    for (i=0; i<7; i++){
+        arr[i] = {
+            _id : i,
+            title: 'Title',
+            description: 'Description'
+        }
+    };
+    res.status(200).json({ 
+        todoList: arr
+    });
+})
+
+
 http.createServer(app).listen(3000, () => {
     console.log('Server ну типа запущен');
 })
