@@ -85,6 +85,14 @@ app.post('/api/todo', (req, res) => {
     });
 })
 
+app.delete('/api/todos/:id', (req, res) => {
+    const id = req.params.id;
+    db1.todo.deleteOne({_id: id}, function(err, todo){
+        if (err) return console.log(err);
+        res.json({message: "Found and deleted"});
+    })
+})
+
 http.createServer(app).listen(3000, () => {
     console.log('Server ну типа запущен');
 })
