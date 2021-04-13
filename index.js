@@ -93,6 +93,17 @@ app.delete('/api/todos/:id', (req, res) => {
     })
 })
 
+app.put('/api/todos/:id', (req, res) => {
+    const id = req.params.id;
+    db1.todo.updateOne({_id:id}, {title: 'title after upd', description: 'description after upd'}, function(err, todo){
+        if (err) return console.log(err);
+        db1.todo.findOne({_id:id}, function(err, todo){
+            if (err) return console.log(err);
+            res.send(todo);
+        });
+    });
+})
+
 http.createServer(app).listen(3000, () => {
     console.log('Server ну типа запущен');
 })
