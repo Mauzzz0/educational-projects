@@ -77,6 +77,14 @@ app.get('/api/todos/:id', (req, res) => {
     });
 })
 
+app.post('/api/todo', (req, res) => {
+    const created_todo = new db1.todo({title: "Title "+ Date.now(), description: "Description " + Date.now()});
+    created_todo.save(function(err, created_todo){
+        if (err) return console.error(err);
+        res.send(created_todo);
+    });
+})
+
 http.createServer(app).listen(3000, () => {
     console.log('Server ну типа запущен');
 })
