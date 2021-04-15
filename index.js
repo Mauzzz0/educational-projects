@@ -2,6 +2,7 @@ const express = require('express');
 const http = require('http');
 const cors = require('cors');
 const db1 = require('./db');
+const todo = require('./Schemas').init_schema_todo();
 
 const app = express();
 app.use(cors());
@@ -63,22 +64,22 @@ app.post('/todoList', (req, res) => {
 })
 
 app.get('/api/todos', (req, res) => {
-    db1.todo.find({}, function(err, todos){
+    todo.find({}, function(err, todos){
         if (err) return console.log(err);
         res.send(todos);
-    });
+    });db1
 })
 
 app.get('/api/todos/:id', (req, res) => {
     const id = req.params.id;
-    db1.todo.findOne({_id:id}, function(err, todo){
+    todo.findOne({_id:id}, function(err, todo){
         if (err) return console.log(err);
         res.send(todo);
     });
 })
 
 app.post('/api/todo', (req, res) => {
-    const created_todo = new db1.todo({title: "Title "+ Date.now(), description: "Description " + Date.now()});
+    const created_todo = new todo({title: "Title "+ Date.now(), description: "Description " + Date.now()});
     created_todo.save(function(err, created_todo){
         if (err) return console.error(err);
         res.send(created_todo);
@@ -87,7 +88,7 @@ app.post('/api/todo', (req, res) => {
 
 app.delete('/api/todos/:id', (req, res) => {
     const id = req.params.id;
-    db1.todo.deleteOne({_id: id}, function(err, todo){
+    todo.deleteOne({_id: id}, function(err, todo){
         if (err) return console.log(err);
         res.json({message: "Found and deleted"});
     })
@@ -95,9 +96,9 @@ app.delete('/api/todos/:id', (req, res) => {
 
 app.put('/api/todos/:id', (req, res) => {
     const id = req.params.id;
-    db1.todo.updateOne({_id:id}, {title: 'title after upd', description: 'description after upd'}, function(err, todo){
+    todo.updateOne({_id:id}, {title: 'title after upd', description: 'description after upd'}, function(err, todo){
         if (err) return console.log(err);
-        db1.todo.findOne({_id:id}, function(err, todo){
+        todo.findOne({_id:id}, function(err, todo){
             if (err) return console.log(err);
             res.send(todo);
         });
@@ -105,5 +106,6 @@ app.put('/api/todos/:id', (req, res) => {
 })
 
 http.createServer(app).listen(3000, () => {
+    db1.connect();
     console.log('Server ну типа запущен');
 })
