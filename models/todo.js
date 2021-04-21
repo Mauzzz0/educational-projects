@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 const todoScheme = new Schema({
     title: String,
     description: String,
-    isComplete: Number
+    isComplete: Boolean
 });
 
 module.exports = mongoose.model("Todo", todoScheme)
