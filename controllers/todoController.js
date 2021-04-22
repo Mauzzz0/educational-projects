@@ -1,15 +1,23 @@
 const Todo = require("../models/todo.js");
 
-exports.addTodo = function (req, res){
-    res.send("Добавление тудушки");
-};
-
 exports.getTodo = function (req, res){
-    res.send("Запрос тудушки");
+    if (!(req.query.id)){
+        Todo.find({}, function(err, todos){
+            if (err) return console.log(err);
+            res.send(todos);
+        })
+    }
+    else {
+        const id = req.query.id;
+        Todo.findOne({_id: id}, function (err, todo) {
+            if (err) return console.log(err);
+            res.send(todo);
+        })
+    }
 };
 
 exports.createTodo = function (req, res){
-    if (!(req.query.title || req.query.description) ) return res.sendStatus(400);
+    if (!(req.query.title || req.query.description)) return res.sendStatus(400);
     const todoTitle = req.query.title;
     const todoDescription = req.query.description;
     const todoIsComplete = req.query.isComplete;
@@ -22,10 +30,20 @@ exports.createTodo = function (req, res){
 };
 
 exports.deleteTodo = function (req, res){
-    res.send("Удаление тудушки");
+    const id = req.query.id;
+    Todo.deleteOne({_id:id}, function(err, todo){
+        if (err) return console.log(err);
+        res.json({message: "Found and deleted"});
+    })
 };
 
 exports.updateTodo = function (req, res){
-    res.send("Обновление тудушки");
+    const id = req.query.id;
+    Todo.updateOne({_id:id}, {title: 'title after upd', description: 'description after upd'}, function(err, todo){
+        if (err) return console.log(err);
+        Todo.findOne({_id:id}, function(err, todo){
+            if (err) return console.log(err);
+            res.send(todo);
+        })
+    })
 };
-
