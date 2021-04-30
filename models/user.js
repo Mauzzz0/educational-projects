@@ -7,7 +7,7 @@ const userScheme = new Schema({
     email: String,
     password: String,
     phone: String,
-    toDoLit: [Todo]
+    toDoList: [Todo]
 });
 
 module.exports = mongoose.model("User", userScheme)
