@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import  mongoose  from 'mongoose'
 
 const Schema = mongoose.Schema;
 
@@ -8,4 +8,4 @@ const todoScheme = new Schema({
     isComplete: Boolean
 });
 
-module.exports = mongoose.model("Todo", todoScheme)
+export default mongoose.model("Todo", todoScheme)

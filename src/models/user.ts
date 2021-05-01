@@ -1,5 +1,6 @@
-const mongoose = require("mongoose");
-const Todo = require("./todo")
+import mongoose from 'mongoose'
+
+import Todo from "./todo"
 
 const Schema = mongoose.Schema;
 
@@ -10,4 +11,4 @@ const userScheme = new Schema({
     toDoList: [Todo]
 });
 
-module.exports = mongoose.model("User", userScheme)
+export default mongoose.model("User", userScheme)
