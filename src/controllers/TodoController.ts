@@ -24,9 +24,9 @@ export class TodoController extends BaseController {
     }
 
     async createTodo(req: Request, res: Response, next: NextFunction) {
-        const title = req.query.title as string;
-        const description = req.query.title as string;
-        const isComplete = req.query.isComplete as string;
+        const title = req.body.title as string;
+        const description = req.body.description as string;
+        const isComplete = req.body.isComplete as boolean;
 
         const result = await TodoService.create(title, description, isComplete);
 
@@ -42,10 +42,10 @@ export class TodoController extends BaseController {
     }
 
     async updateTodo(req: Request, res: Response, next: NextFunction) {
-        const id = req.query.id as string;
-        const title = req.query.title as string;
-        const description = req.query.title as string;
-        const isComplete = req.query.isComplete as string;
+        const id = req.body.id as string;
+        const title = req.body.title as string;
+        const description = req.body.title as string;
+        const isComplete = req.body.isComplete as boolean;
 
         const result = await TodoService.update(id, title, description, isComplete);
 

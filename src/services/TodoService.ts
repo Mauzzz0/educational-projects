@@ -16,9 +16,8 @@ export class TodoService {
         return result;
     }
 
-    static async create(title: string, description: string, iscomplete: string) {
-        const iscomplete_bool = (iscomplete == 'true');
-        var todo = new TodoModel({ title: title, description: description, isComplete: iscomplete_bool });
+    static async create(title: string, description: string, iscomplete: boolean) {
+        var todo = new TodoModel({ title: title, description: description, isComplete: iscomplete });
         await todo.save();
 
         return todo;
@@ -30,10 +29,9 @@ export class TodoService {
         return result;
     }
 
-    static async update(id: string, title: string, description: string, iscomplete: string) {
-        const iscomplete_bool = (iscomplete == 'true');
+    static async update(id: string, title: string, description: string, iscomplete: boolean) {
 
-        const result = await TodoModel.findByIdAndUpdate({ _id: id }, { title: title, description: description, isComplete: iscomplete_bool }, { new: true });
+        const result = await TodoModel.findByIdAndUpdate({ _id: id }, { title: title, description: description, isComplete: iscomplete }, { new: true });
 
         return result;
     }
