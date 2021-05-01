@@ -1,8 +1,8 @@
-import fs from 'fs' 
+import fs from 'fs'
 import express from 'express'
 import BaseController from "./core/BaseController";
-import {logger, errorHandler, notFound} from "./middlewares/middleware"
-
+import { logger, errorHandler, notFound } from "./middlewares/middleware"
+require('./database/db')
 const app = express();
 app.use(logger);
 
@@ -20,4 +20,4 @@ app.use(notFound);
 
 
 
-app.listen(3000, function(){console.log("Server started...")});
+app.listen(3000, function () { console.log("Server started...") });

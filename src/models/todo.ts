@@ -1,11 +1,14 @@
-import  mongoose  from 'mongoose'
+import { getModelForClass, prop } from '@typegoose/typegoose';
 
-const Schema = mongoose.Schema;
+class TodoClass {
+    @prop()
+    public title?: string;
 
-const todoScheme = new Schema({
-    title: String,
-    description: String,
-    isComplete: Boolean
-});
+    @prop()
+    public description?: string;
 
-export default mongoose.model("Todo", todoScheme)
+    @prop()
+    public isComplete?: boolean;
+}
+
+export const TodoModel = getModelForClass(TodoClass);
