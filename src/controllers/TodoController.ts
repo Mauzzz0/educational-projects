@@ -44,7 +44,7 @@ export class TodoController extends BaseController {
     async updateTodo(req: Request, res: Response, next: NextFunction) {
         const id = req.body.id as string;
         const title = req.body.title as string;
-        const description = req.body.title as string;
+        const description = req.body.description as string;
         const isComplete = req.body.isComplete as boolean;
 
         const result = await TodoService.update(id, title, description, isComplete);
