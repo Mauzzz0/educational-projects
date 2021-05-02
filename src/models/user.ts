@@ -1,14 +1,17 @@
-import mongoose from 'mongoose'
+import { getModelForClass, prop } from '@typegoose/typegoose';
 
-import Todo from "./todo"
+class UserClass {
+    @prop()
+    public email?: string;
 
-const Schema = mongoose.Schema;
+    @prop()
+    public password?: string;
 
-const userScheme = new Schema({
-    email: String,
-    password: String,
-    phone: String,
-    toDoList: [Todo]
-});
+    @prop()
+    public phone?: string;
 
-export default mongoose.model("User", userScheme)
+    @prop()
+    public todoId?: [string];
+}
+
+export const UserModel = getModelForClass(UserClass);
