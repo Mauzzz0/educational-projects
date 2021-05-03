@@ -3,3 +3,4 @@ package-lock.json
 *.bak
 examples
 dist
+.idea/
