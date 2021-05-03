@@ -27,7 +27,7 @@ export class UserController extends BaseController {
         const email = req.body.email as string;
         const password = req.body.password as string;
         const phone = req.body.phone as string;
-        //const todoId = req.body.todoid as [string];
+        const todoId = req.body.todoid as [];
         // Как правильно получать массив айдишек из тела?
 
         const result = await UserService.create(email, password, phone, todoId);
@@ -48,7 +48,7 @@ export class UserController extends BaseController {
         const email = req.body.email as string;
         const password = req.body.password as string;
         const phone = req.body.phone as string;
-        //const todoId = req.body.todoid as [string];
+        const todoId = req.body.todoid as [];
 
         const result = await UserService.update(id, email, password, phone, todoId);
 
