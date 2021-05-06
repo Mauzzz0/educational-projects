@@ -9,9 +9,6 @@ class UserClass {
 
     @prop()
     public phone?: string;
-
-    @prop()
-    public todoId?: [];
 }
 
 export const UserModel = getModelForClass(UserClass);

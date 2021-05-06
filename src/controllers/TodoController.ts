@@ -27,8 +27,9 @@ export class TodoController extends BaseController {
         const title = req.body.title as string;
         const description = req.body.description as string;
         const isComplete = req.body.isComplete as boolean;
+        const userId = req.get('userId') as string;
 
-        const result = await TodoService.create(title, description, isComplete);
+        const result = await TodoService.create(title, description, isComplete, userId);
 
         res.status(200).json(result);
     }

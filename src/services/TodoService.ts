@@ -17,8 +17,8 @@ export class TodoService {
         return result;
     }
 
-    static async create(title: string, description: string, iscomplete: boolean) {
-        var todo = new TodoModel({ title: title, description: description, isComplete: iscomplete });
+    static async create(title: string, description: string, iscomplete: boolean, userid: string) {
+        var todo = new TodoModel({ title: title, description: description, isComplete: iscomplete, userId: userid });
         await todo.save();
 
         return todo;

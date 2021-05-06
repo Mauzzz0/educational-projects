@@ -15,8 +15,8 @@ export class UserService{
         return result;
     }
 
-    static async create(email: string, password: string, phone: string, todoid: []) {
-        var user = new UserModel({ email: email, password: password, phone: phone, todoId: todoid });
+    static async create(email: string, password: string, phone: string) {
+        var user = new UserModel({ email: email, password: password, phone: phone });
         await user.save();
 
         return user;
@@ -30,12 +30,12 @@ export class UserService{
         return result;
     }
 
-    static async update(id: string, email: string, password: string, phone: string, todoid: []) {
+    static async update(id: string, email: string, password: string, phone: string) {
         if (!id) throwError(400, "No ID exposed in the request body");
         if (!await UserModel.exists({_id:id})) throwError(400, "ID doesn't exist")
 
 
-        const result = await UserModel.findByIdAndUpdate({ _id: id }, { email: email, password: password, phone: phone, todoId: todoid }, { new: true });
+        const result = await UserModel.findByIdAndUpdate({ _id: id }, { email: email, password: password, phone: phone }, { new: true });
                                                                 // TODO: Сделать проверку на null, чтобы можно было частично обновлять данные.
         return result;
     }

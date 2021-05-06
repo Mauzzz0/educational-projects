@@ -9,6 +9,9 @@ class TodoClass {
 
     @prop()
     public isComplete?: boolean;
+
+    @prop()
+    public userId?: string;
 }
 
 export const TodoModel = getModelForClass(TodoClass);
