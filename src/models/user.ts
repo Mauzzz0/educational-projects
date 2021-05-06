@@ -9,6 +9,9 @@ class UserClass {
 
     @prop()
     public phone?: string;
+
+    @prop()
+    public isConfirmed?: boolean;
 }
 
 export const UserModel = getModelForClass(UserClass);

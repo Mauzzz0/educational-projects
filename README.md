@@ -6,7 +6,7 @@
 ##### Todo
 * `title`, `description`, `isComplete`, `userId`
 ##### User
-* `email`, `password`, `phone`
+* `email`, `password`, `phone`, `isConfirmed`
 ##### Token
 * `userId`, `accessToken`, `deviceId`, `refrestToken`, `atExpired`, `rtExpired`
 ##### ConfirmRegistration
