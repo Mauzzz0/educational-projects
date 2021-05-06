@@ -16,10 +16,19 @@ export class UserService{
     }
 
     static async create(email: string, password: string, phone: string) {
-        var user = new UserModel({ email: email, password: password, phone: phone });
-        await user.save();
+        var newUser = new UserModel({ email: email, password: password, phone: phone });
+        const oldUser = await UserModel.findOne({email:email});
+        let result;
 
-        return user;
+        if (oldUser == null){
+            await newUser.save();
+            result = newUser;
+        }
+        else{
+            throwError(400, 'This email already exist');
+        }
+
+        return result;
     }
 
     static async delete(id: string) {

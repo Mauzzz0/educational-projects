@@ -10,7 +10,8 @@ export class UserController extends BaseController {
 
     initRoutes(): void {
         this.getAsync('/get', this.getUser);
-        this.postAsync('/create', this.createUser);
+        //this.postAsync('/create', this.createUser);
+        // Заменено на /auth/register
         this.deleteAsync('/delete', this.deleteUser);
         this.patchAsync('/patch', this.updateUser);
     }
