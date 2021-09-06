@@ -1,10 +1,7 @@
 import { Module } from '@nestjs/common'
-import { AppService } from './app.service'
-import { TodoController } from './layers/gateways/rest/customers/controllers/TodoController'
+import { TodoModule } from './layers/domains/customers/modules/TodoModule'
 
 @Module({
-  imports: [],
-  controllers: [TodoController],
-  providers: [AppService],
+  imports: [TodoModule],
 })
 export class AppModule {}

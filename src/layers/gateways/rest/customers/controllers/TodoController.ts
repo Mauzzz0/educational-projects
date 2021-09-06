@@ -21,12 +21,16 @@ import {
   ApiTags,
 } from '@nestjs/swagger'
 import { CreateTodoDto } from 'src/layers/contracts/dto/CreateTodoDto'
+import { TodoDto } from 'src/layers/contracts/dto/TodoDto'
+import { TodoService } from '../../../../domains/customers/service/TodoService'
 
 @Controller('todo')
 export class TodoController {
+  constructor(private todosService: TodoService) {}
+
   @Post('')
-  public async create(@Body() createTodoDto: CreateTodoDto): Promise<any> {
-    throw new NotImplementedException()
+  public async create(@Body() todoDto: TodoDto): Promise<any> {
+    return this.todosService.create(todoDto)
   }
 
   @Get(':id')
@@ -36,7 +40,7 @@ export class TodoController {
 
   @Get('')
   public async list(): Promise<any> {
-    throw new NotImplementedException()
+    return this.todosService.findAll()
   }
 
   @Put(':id')
