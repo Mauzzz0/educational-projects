@@ -1,0 +1,22 @@
+{
+  "name": "js-reduce-training",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node src/main.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mauzzz0/js-reduce-training.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mauzzz0/js-reduce-training/issues"
+  },
+  "homepage": "https://github.com/Mauzzz0/js-reduce-training#readme",
+  "dependencies": {
+    "typescript": "^4.3.5"
+  }
+}
