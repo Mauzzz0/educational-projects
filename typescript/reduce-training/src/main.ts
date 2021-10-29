@@ -1,5 +1,38 @@
 
 
+
+const result = traffic.reduce(
+      (result, item) => {
+        if (loadedProtocols.indexOf(item.protocol) != -1) {
+          return result;
+        }
+
+        const data = traffic
+          .filter((item2) => item2.protocol === item.protocol)
+          .map((item3) => {
+            const { protocol, ...others } = item3;
+
+            return others;
+          });
+
+        if (result.count == -1) result.count = data.length;
+
+        loadedProtocols.push(item.protocol);
+
+        result.protocolList = [
+          ...result.protocolList,
+          { protocol: item.protocol, data },
+        ];
+        return result;
+      },
+      {
+        serviceId,
+        prefix,
+        count: -1,
+        protocolList: [],
+      },
+    );
+
 // array foreach * 2 + filtering
 // const euros = [10, 20, 30, 40];
 // const doubled = euros.reduce((total, amount) => {
